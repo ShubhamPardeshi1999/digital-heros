@@ -5,6 +5,7 @@ import { useParams, useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Textarea } from "@/components/ui/textarea";
+import { Mail, Phone, Globe, Calendar, MessageSquare, PlusCircle, RefreshCw, FileText, UserPlus, UserMinus, Activity as ActivityIcon } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 import {
   Select,
@@ -59,12 +60,15 @@ const statusColors: Record<string, string> = {
   lost: "bg-red-500/10 text-red-400 border-red-500/20",
 };
 
-const actionIcons: Record<string, string> = {
-  lead_created: "🆕",
-  status_changed: "🔄",
-  note_added: "📝",
-  assigned: "👤",
-  unassigned: "🚫",
+const getActionIcon = (action: string) => {
+  switch (action) {
+    case "lead_created": return <PlusCircle className="w-4 h-4 text-emerald-400" />;
+    case "status_changed": return <RefreshCw className="w-4 h-4 text-blue-400" />;
+    case "note_added": return <FileText className="w-4 h-4 text-amber-400" />;
+    case "assigned": return <UserPlus className="w-4 h-4 text-purple-400" />;
+    case "unassigned": return <UserMinus className="w-4 h-4 text-red-400" />;
+    default: return <ActivityIcon className="w-4 h-4 text-slate-400" />;
+  }
 };
 
 export default function LeadDetailPage() {
@@ -214,10 +218,10 @@ export default function LeadDetailPage() {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {[
-                { label: "Email", value: lead.email, icon: "✉️" },
-                { label: "Phone", value: lead.phone, icon: "📱" },
-                { label: "Source", value: lead.source, icon: "🌐" },
-                { label: "Created", value: formatDateTime(lead.createdAt), icon: "📅" },
+                { label: "Email", value: lead.email, icon: <Mail className="w-4 h-4 mr-1.5 inline-block" /> },
+                { label: "Phone", value: lead.phone, icon: <Phone className="w-4 h-4 mr-1.5 inline-block" /> },
+                { label: "Source", value: lead.source, icon: <Globe className="w-4 h-4 mr-1.5 inline-block" /> },
+                { label: "Created", value: formatDateTime(lead.createdAt), icon: <Calendar className="w-4 h-4 mr-1.5 inline-block" /> },
               ].map((item, i) => (
                 <div key={i} className="p-3 rounded-lg bg-slate-800/30">
                   <p className="text-xs text-slate-500 mb-1">
@@ -230,7 +234,7 @@ export default function LeadDetailPage() {
 
             {lead.message && (
               <div className="mt-4 p-3 rounded-lg bg-slate-800/30">
-                <p className="text-xs text-slate-500 mb-1">💬 Message</p>
+                <p className="text-xs text-slate-500 mb-1 flex items-center"><MessageSquare className="w-4 h-4 mr-1.5" /> Message</p>
                 <p className="text-sm text-slate-300 leading-relaxed">{lead.message}</p>
               </div>
             )}
@@ -272,7 +276,11 @@ export default function LeadDetailPage() {
                   disabled={updating}
                 >
                   <SelectTrigger className="bg-slate-800/50 border-slate-700 text-white">
-                    <SelectValue placeholder="Select member" />
+                    <span className="truncate">
+                      {lead.assignedTo 
+                        ? (users.find(u => u._id === (typeof lead.assignedTo === 'string' ? lead.assignedTo : lead.assignedTo?._id))?.name || lead.assignedTo?.name || "Unknown User")
+                        : "Unassigned"}
+                    </span>
                   </SelectTrigger>
                   <SelectContent className="bg-slate-900 border-slate-800">
                     <SelectItem value="unassigned">Unassigned</SelectItem>
@@ -352,8 +360,8 @@ export default function LeadDetailPage() {
                   <div key={activity._id} className="flex gap-3">
                     {/* Timeline line */}
                     <div className="flex flex-col items-center">
-                      <div className="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center text-sm shrink-0">
-                        {actionIcons[activity.action] || "📋"}
+                      <div className="w-8 h-8 rounded-full bg-slate-800/50 flex items-center justify-center border border-slate-700/50 text-sm shadow-sm shrink-0">
+                        {getActionIcon(activity.action)}
                       </div>
                       {index < activities.length - 1 && (
                         <div className="w-px h-full bg-slate-800 my-1" />
