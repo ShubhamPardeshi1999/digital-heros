@@ -105,94 +105,94 @@ export default function UsersPage() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h2 className="text-xl font-bold text-white">Team Members</h2>
-          <p className="text-sm text-slate-400 mt-1">
+          <h2 className="text-3xl font-bold text-zinc-100 tracking-tight">Team Members</h2>
+          <p className="text-sm text-zinc-400 mt-2">
             Manage your team members and their roles.
           </p>
         </div>
         <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
-          <DialogTrigger className="inline-flex items-center justify-center gap-2 rounded-md bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 text-sm font-medium cursor-pointer transition-colors">
+          <DialogTrigger className="inline-flex items-center justify-center gap-2 rounded-md bg-cyan-500 hover:bg-cyan-400 text-zinc-950 px-5 py-2.5 text-sm font-semibold cursor-pointer transition-colors h-10 shadow-sm">
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
               </svg>
               Add Member
           </DialogTrigger>
-          <DialogContent className="bg-slate-900 border-slate-800 text-white">
+          <DialogContent className="bg-[#0a0a0a] border-white/5 text-zinc-100 sm:max-w-md">
             <DialogHeader>
-              <DialogTitle>Add New Team Member</DialogTitle>
-              <DialogDescription className="text-slate-400">
+              <DialogTitle className="text-xl font-bold text-zinc-100">Add New Team Member</DialogTitle>
+              <DialogDescription className="text-zinc-400">
                 Create a new account for your team member.
               </DialogDescription>
             </DialogHeader>
-            <form onSubmit={handleCreateUser} className="space-y-4 mt-2">
+            <form onSubmit={handleCreateUser} className="space-y-4 mt-4">
               {error && (
                 <div className="p-3 rounded-lg bg-red-500/10 border border-red-500/20 text-red-400 text-sm">
                   {error}
                 </div>
               )}
               <div className="space-y-2">
-                <Label className="text-slate-300">Name</Label>
+                <Label className="text-xs font-semibold text-zinc-500 uppercase tracking-widest">Name</Label>
                 <Input
                   value={formData.name}
                   onChange={(e) => setFormData((p) => ({ ...p, name: e.target.value }))}
                   required
-                  className="bg-slate-800/50 border-slate-700 text-white"
+                  className="bg-zinc-900/40 border-white/10 text-zinc-100 focus-visible:ring-cyan-500/50"
                   placeholder="John Doe"
                 />
               </div>
               <div className="space-y-2">
-                <Label className="text-slate-300">Email</Label>
+                <Label className="text-xs font-semibold text-zinc-500 uppercase tracking-widest">Email</Label>
                 <Input
                   type="email"
                   value={formData.email}
                   onChange={(e) => setFormData((p) => ({ ...p, email: e.target.value }))}
                   required
-                  className="bg-slate-800/50 border-slate-700 text-white"
+                  className="bg-zinc-900/40 border-white/10 text-zinc-100 focus-visible:ring-cyan-500/50"
                   placeholder="john@example.com"
                 />
               </div>
               <div className="space-y-2">
-                <Label className="text-slate-300">Password</Label>
+                <Label className="text-xs font-semibold text-zinc-500 uppercase tracking-widest">Password</Label>
                 <Input
                   type="password"
                   value={formData.password}
                   onChange={(e) => setFormData((p) => ({ ...p, password: e.target.value }))}
                   required
                   minLength={6}
-                  className="bg-slate-800/50 border-slate-700 text-white"
+                  className="bg-zinc-900/40 border-white/10 text-zinc-100 focus-visible:ring-cyan-500/50"
                   placeholder="Minimum 6 characters"
                 />
               </div>
               <div className="space-y-2">
-                <Label className="text-slate-300">Role</Label>
+                <Label className="text-xs font-semibold text-zinc-500 uppercase tracking-widest">Role</Label>
                 <Select
                   value={formData.role}
                   onValueChange={(val) =>
                     setFormData((p) => ({ ...p, role: (val || "member") as "admin" | "member" }))
                   }
                 >
-                  <SelectTrigger className="bg-slate-800/50 border-slate-700 text-white">
+                  <SelectTrigger className="bg-zinc-900/40 border-white/10 text-zinc-100">
                     <SelectValue />
                   </SelectTrigger>
-                  <SelectContent className="bg-slate-900 border-slate-800">
+                  <SelectContent className="bg-zinc-950 border-white/10 text-zinc-100">
                     <SelectItem value="member">Member</SelectItem>
                     <SelectItem value="admin">Admin</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
-              <div className="flex justify-end gap-3 pt-2">
+              <div className="flex justify-end gap-3 pt-4">
                 <Button
                   type="button"
-                  variant="outline"
+                  variant="ghost"
                   onClick={() => setDialogOpen(false)}
-                  className="border-slate-700 text-slate-300 hover:bg-slate-800 cursor-pointer"
+                  className="text-zinc-400 hover:text-white hover:bg-white/5 cursor-pointer h-10 px-5"
                 >
                   Cancel
                 </Button>
                 <Button
                   type="submit"
                   disabled={creating}
-                  className="bg-indigo-600 hover:bg-indigo-500 text-white cursor-pointer"
+                  className="bg-cyan-500 hover:bg-cyan-400 text-zinc-950 font-semibold cursor-pointer h-10 px-6 transition-colors"
                 >
                   {creating ? "Creating..." : "Create User"}
                 </Button>
@@ -205,28 +205,28 @@ export default function UsersPage() {
       {/* Users List */}
       {loading ? (
         <div className="flex items-center justify-center py-20">
-          <svg className="animate-spin h-8 w-8 text-indigo-500" viewBox="0 0 24 24">
+          <svg className="animate-spin h-8 w-8 text-cyan-500" viewBox="0 0 24 24">
             <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
             <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
           </svg>
         </div>
       ) : (
-        <div className="rounded-xl border border-slate-800 overflow-hidden">
+        <div className="rounded-xl border border-white/5 overflow-hidden bg-[#0a0a0a] shadow-sm">
           <table className="w-full">
             <thead>
-              <tr className="bg-slate-900/80 border-b border-slate-800">
-                <th className="text-left px-4 py-3 text-xs font-medium text-slate-500 uppercase tracking-wider">Name</th>
-                <th className="text-left px-4 py-3 text-xs font-medium text-slate-500 uppercase tracking-wider hidden sm:table-cell">Email</th>
-                <th className="text-left px-4 py-3 text-xs font-medium text-slate-500 uppercase tracking-wider">Role</th>
-                <th className="text-left px-4 py-3 text-xs font-medium text-slate-500 uppercase tracking-wider hidden md:table-cell">Joined</th>
+              <tr className="bg-zinc-900/50 border-b border-white/5">
+                <th className="text-left px-5 py-4 text-xs font-semibold text-zinc-500 uppercase tracking-widest">Name</th>
+                <th className="text-left px-5 py-4 text-xs font-semibold text-zinc-500 uppercase tracking-widest hidden sm:table-cell">Email</th>
+                <th className="text-left px-5 py-4 text-xs font-semibold text-zinc-500 uppercase tracking-widest">Role</th>
+                <th className="text-left px-5 py-4 text-xs font-semibold text-zinc-500 uppercase tracking-widest hidden md:table-cell">Joined</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-800">
+            <tbody className="divide-y divide-white/5">
               {users.map((user) => (
-                <tr key={user._id} className="hover:bg-slate-900/50 transition-colors">
-                  <td className="px-4 py-3.5">
+                <tr key={user._id} className="hover:bg-white/5 transition-colors group">
+                  <td className="px-5 py-4">
                     <div className="flex items-center gap-3">
-                      <div className="w-9 h-9 rounded-full bg-indigo-500/20 flex items-center justify-center text-indigo-400 text-sm font-medium shrink-0">
+                      <div className="w-9 h-9 rounded-full bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400 text-sm font-bold shrink-0 shadow-sm">
                         {user.name
                           .split(" ")
                           .map((n) => n[0])
@@ -234,27 +234,27 @@ export default function UsersPage() {
                           .toUpperCase()}
                       </div>
                       <div>
-                        <p className="text-sm font-medium text-white">{user.name}</p>
-                        <p className="text-xs text-slate-500 sm:hidden">{user.email}</p>
+                        <p className="text-sm font-medium text-zinc-100">{user.name}</p>
+                        <p className="text-xs text-zinc-500 sm:hidden mt-0.5">{user.email}</p>
                       </div>
                     </div>
                   </td>
-                  <td className="px-4 py-3.5 text-sm text-slate-400 hidden sm:table-cell">
+                  <td className="px-5 py-4 text-sm text-zinc-400 hidden sm:table-cell">
                     {user.email}
                   </td>
-                  <td className="px-4 py-3.5">
+                  <td className="px-5 py-4">
                     <Badge
                       variant="outline"
-                      className={`capitalize text-xs ${
+                      className={`capitalize text-xs font-medium px-2 py-0.5 ${
                         user.role === "admin"
                           ? "bg-amber-500/10 text-amber-400 border-amber-500/20"
-                          : "bg-slate-500/10 text-slate-400 border-slate-500/20"
+                          : "bg-zinc-500/10 text-zinc-400 border-zinc-500/20"
                       }`}
                     >
                       {user.role}
                     </Badge>
                   </td>
-                  <td className="px-4 py-3.5 text-sm text-slate-500 hidden md:table-cell">
+                  <td className="px-5 py-4 text-sm text-zinc-500 hidden md:table-cell">
                     {new Date(user.createdAt).toLocaleDateString("en-IN", {
                       day: "numeric",
                       month: "short",

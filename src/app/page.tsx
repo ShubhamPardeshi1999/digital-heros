@@ -1,148 +1,117 @@
 import Link from "next/link";
 import LeadCaptureForm from "@/components/LeadCaptureForm";
 import Footer from "@/components/Footer";
+import { ArrowRight, Sparkles, Target, Users, Zap } from "lucide-react";
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen flex flex-col bg-slate-950 text-white">
+    <div className="min-h-screen flex flex-col bg-[#0a0a0a] text-zinc-100 selection:bg-cyan-500/30 font-sans">
+      {/* Abstract Grid Background */}
+      <div className="fixed inset-0 z-0 pointer-events-none opacity-[0.03] mix-blend-screen bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
+      <div className="fixed inset-0 z-0 pointer-events-none bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]" />
+
       {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 border-b border-slate-800/50 bg-slate-950/80 backdrop-blur-xl">
-        <div className="container mx-auto px-4 h-16 flex items-center justify-between">
+      <nav className="fixed top-0 left-0 right-0 z-50 border-b border-white/5 bg-[#0a0a0a]/60 backdrop-blur-md">
+        <div className="container mx-auto px-6 h-16 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-lg flex items-center justify-center">
-              <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-              </svg>
+            <div className="w-8 h-8 bg-cyan-500/10 border border-cyan-500/20 rounded-md flex items-center justify-center">
+              <Sparkles className="w-4 h-4 text-cyan-400" />
             </div>
-            <span className="text-lg font-bold bg-gradient-to-r from-white to-slate-400 bg-clip-text text-transparent">
-              LeadFlow
+            <span className="text-lg font-semibold tracking-tight text-zinc-100">
+              LeadFlow.
             </span>
           </div>
-          <div className="flex items-center gap-4">
-            <a href="#features" className="text-sm text-slate-400 hover:text-white transition-colors hidden sm:block">
+          <div className="flex items-center gap-6">
+            <a href="#features" className="text-sm font-medium text-zinc-400 hover:text-zinc-100 transition-colors hidden sm:block">
               Features
             </a>
-            <a href="#contact" className="text-sm text-slate-400 hover:text-white transition-colors hidden sm:block">
+            <a href="#contact" className="text-sm font-medium text-zinc-400 hover:text-zinc-100 transition-colors hidden sm:block">
               Contact
             </a>
             <Link
               href="/login"
-              className="text-sm px-4 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white transition-colors font-medium"
+              className="text-sm px-4 py-2 rounded-md bg-zinc-100 hover:bg-white text-zinc-900 transition-all font-medium flex items-center gap-2 shadow-[0_0_20px_rgba(255,255,255,0.1)]"
             >
-              Dashboard Login
+              Dashboard <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
         </div>
       </nav>
 
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 px-4 overflow-hidden">
-        {/* Background effects */}
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-20 left-1/4 w-96 h-96 bg-indigo-600/15 rounded-full blur-3xl" />
-          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-600/10 rounded-full blur-3xl" />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[600px] bg-gradient-to-b from-indigo-500/5 to-transparent rounded-full blur-3xl" />
-        </div>
+      <section className="relative pt-40 pb-24 px-6 overflow-hidden z-10 flex-1 flex flex-col items-center justify-center">
+        {/* Soft glowing orb behind text */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[500px] bg-cyan-500/10 blur-[120px] rounded-full pointer-events-none" />
 
         <div className="container mx-auto max-w-4xl relative z-10 text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-sm mb-8">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-indigo-500" />
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/5 border border-cyan-500/10 text-cyan-400 text-xs font-medium uppercase tracking-widest mb-8">
+            <span className="relative flex h-1.5 w-1.5">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75" />
+              <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-cyan-500" />
             </span>
-            Smart Lead Management Platform
+            Next-Gen CRM
           </div>
 
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6">
-            Capture, Track &{" "}
-            <span className="bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-              Convert Leads
-            </span>{" "}
-            Effortlessly
+          <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight mb-8 text-zinc-100">
+            Convert leads with{" "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">
+              precision.
+            </span>
           </h1>
 
-          <p className="text-lg sm:text-xl text-slate-400 max-w-2xl mx-auto mb-10 leading-relaxed">
-            A powerful lead management platform that helps your sales team capture inquiries,
-            track their lifecycle, and close deals faster with real-time collaboration.
+          <p className="text-lg sm:text-xl text-zinc-400 max-w-2xl mx-auto mb-12 font-light leading-relaxed">
+            The minimal, fast, and powerful lead management platform designed for modern sales teams who care about closing deals, not fighting software.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <a
               href="#contact"
-              className="inline-flex items-center justify-center gap-2 px-8 py-3 rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white font-medium shadow-lg shadow-indigo-500/25 transition-all duration-200"
+              className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-md bg-cyan-500 hover:bg-cyan-400 text-zinc-950 font-semibold transition-all duration-200 shadow-[0_0_30px_rgba(6,182,212,0.2)]"
             >
-              Get in Touch
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-              </svg>
+              Start Capturing
             </a>
             <Link
               href="/login"
-              className="inline-flex items-center justify-center gap-2 px-8 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-medium border border-slate-700 transition-all duration-200"
+              className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-md bg-zinc-900 hover:bg-zinc-800 text-zinc-100 font-medium border border-white/5 transition-all duration-200"
             >
-              Access Dashboard
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-              </svg>
+              Sign In
             </Link>
           </div>
         </div>
       </section>
 
-      {/* Features Section */}
-      <section id="features" className="py-20 px-4 border-t border-slate-800/50">
+      {/* Features Grid */}
+      <section id="features" className="py-24 px-6 border-t border-white/5 relative z-10 bg-[#0a0a0a]">
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl font-bold mb-4">
-              Everything you need to{" "}
-              <span className="bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">
-                manage leads
-              </span>
-            </h2>
-            <p className="text-slate-400 max-w-xl mx-auto">
-              Built with modern tools for a seamless experience across your entire sales pipeline.
-            </p>
+            <h2 className="text-3xl font-bold tracking-tight mb-4">Built for speed and clarity.</h2>
+            <p className="text-zinc-400">Everything you need, nothing you don't.</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
               {
-                icon: (
-                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
-                  </svg>
-                ),
-                title: "Lead Capture",
-                description: "Collect inquiries through a beautiful public form that automatically creates leads in your system.",
+                icon: <Target className="w-5 h-5 text-cyan-400" />,
+                title: "Lifecycle Tracking",
+                desc: "Move leads seamlessly from new inquiry to won deal.",
               },
               {
-                icon: (
-                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z" />
-                  </svg>
-                ),
-                title: "Lifecycle Dashboard",
-                description: "Track every lead from 'New' to 'Won' with status updates, notes, and a complete activity trail.",
+                icon: <Users className="w-5 h-5 text-cyan-400" />,
+                title: "Team Collaboration",
+                desc: "Assign leads, add notes, and work together in real-time.",
               },
               {
-                icon: (
-                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
-                  </svg>
-                ),
-                title: "Role-Based Access",
-                description: "Admin and Member roles with strict permissions enforced on both frontend and backend.",
+                icon: <Zap className="w-5 h-5 text-cyan-400" />,
+                title: "Instant Activity Trail",
+                desc: "Every action is logged. Never lose context on a conversation.",
               },
-            ].map((feature, i) => (
-              <div
-                key={i}
-                className="group p-6 rounded-2xl bg-slate-900/50 border border-slate-800 hover:border-indigo-500/30 hover:bg-slate-900/80 transition-all duration-300"
-              >
-                <div className="w-12 h-12 rounded-xl bg-indigo-500/10 flex items-center justify-center text-indigo-400 mb-4 group-hover:bg-indigo-500/20 transition-colors">
-                  {feature.icon}
+            ].map((f, i) => (
+              <div key={i} className="p-8 rounded-2xl bg-zinc-900/50 border border-white/5 hover:border-cyan-500/20 transition-colors group">
+                <div className="w-10 h-10 rounded-lg bg-cyan-500/10 flex items-center justify-center mb-6 group-hover:bg-cyan-500/20 transition-colors">
+                  {f.icon}
                 </div>
-                <h3 className="text-lg font-semibold text-white mb-2">{feature.title}</h3>
-                <p className="text-sm text-slate-400 leading-relaxed">{feature.description}</p>
+                <h3 className="text-lg font-semibold text-zinc-100 mb-2">{f.title}</h3>
+                <p className="text-sm text-zinc-400 leading-relaxed">{f.desc}</p>
               </div>
             ))}
           </div>
@@ -150,27 +119,28 @@ export default function HomePage() {
       </section>
 
       {/* Contact / Lead Capture Section */}
-      <section id="contact" className="py-20 px-4 border-t border-slate-800/50">
-        <div className="container mx-auto max-w-2xl">
-          <div className="text-center mb-10">
-            <h2 className="text-3xl sm:text-4xl font-bold mb-4">
-              Get in{" "}
-              <span className="bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">
-                Touch
-              </span>
-            </h2>
-            <p className="text-slate-400">
-              Have a project or inquiry? Fill out the form below and our team will reach out.
-            </p>
+      <section id="contact" className="py-24 px-6 border-t border-white/5 relative z-10 bg-[#0a0a0a]">
+        <div className="container mx-auto max-w-4xl">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold tracking-tight mb-4">Experience the flow.</h2>
+            <p className="text-zinc-400">Drop your info below and see how quickly it hits the dashboard.</p>
           </div>
-
-          <div className="p-8 rounded-2xl bg-slate-900/50 border border-slate-800 backdrop-blur-sm">
-            <LeadCaptureForm />
+          
+          <div className="max-w-md mx-auto">
+            {/* The form wrapper to make it look floating and premium */}
+            <div className="relative">
+              <div className="absolute -inset-1 bg-gradient-to-b from-cyan-500/20 to-transparent rounded-2xl blur-xl opacity-50" />
+              <div className="relative bg-zinc-900/80 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl p-6 sm:p-8">
+                <LeadCaptureForm />
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      <Footer />
+      <div className="relative z-10">
+        <Footer />
+      </div>
     </div>
   );
 }

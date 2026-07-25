@@ -52,10 +52,10 @@ interface Activity {
 }
 
 const statusColors: Record<string, string> = {
-  new: "bg-blue-500/10 text-blue-400 border-blue-500/20",
+  new: "bg-cyan-500/10 text-cyan-400 border-cyan-500/20",
   contacted: "bg-amber-500/10 text-amber-400 border-amber-500/20",
   qualified: "bg-purple-500/10 text-purple-400 border-purple-500/20",
-  proposal: "bg-cyan-500/10 text-cyan-400 border-cyan-500/20",
+  proposal: "bg-blue-500/10 text-blue-400 border-blue-500/20",
   won: "bg-emerald-500/10 text-emerald-400 border-emerald-500/20",
   lost: "bg-red-500/10 text-red-400 border-red-500/20",
 };
@@ -160,7 +160,7 @@ export default function LeadDetailPage() {
   if (loading) {
     return (
       <div className="flex items-center justify-center py-20">
-        <svg className="animate-spin h-8 w-8 text-indigo-500" viewBox="0 0 24 24">
+        <svg className="animate-spin h-8 w-8 text-cyan-500" viewBox="0 0 24 24">
           <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
           <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
         </svg>
@@ -170,12 +170,12 @@ export default function LeadDetailPage() {
 
   if (!lead) {
     return (
-      <div className="text-center py-20">
-        <h3 className="text-lg font-medium text-slate-400">Lead not found</h3>
+      <div className="text-center py-20 border border-white/5 rounded-xl bg-zinc-900/20">
+        <h3 className="text-lg font-medium text-zinc-400">Lead not found</h3>
         <Button
           onClick={() => router.push("/dashboard/leads")}
           variant="outline"
-          className="mt-4 border-slate-800 text-slate-400 cursor-pointer"
+          className="mt-4 border-white/5 bg-[#0a0a0a] text-zinc-400 hover:text-white hover:bg-white/5 cursor-pointer"
         >
           Back to Leads
         </Button>
@@ -190,10 +190,10 @@ export default function LeadDetailPage() {
         onClick={() => router.push("/dashboard/leads")}
         variant="ghost"
         size="sm"
-        className="text-slate-400 hover:text-white -ml-2 cursor-pointer"
+        className="text-zinc-400 hover:text-white hover:bg-white/5 -ml-2 cursor-pointer h-9 px-3"
       >
-        <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+        <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
         </svg>
         Back to Leads
       </Button>
@@ -202,15 +202,15 @@ export default function LeadDetailPage() {
         {/* Left Column — Lead Info + Actions */}
         <div className="lg:col-span-2 space-y-6">
           {/* Lead Info Card */}
-          <div className="rounded-xl border border-slate-800 bg-slate-900/50 p-6">
-            <div className="flex flex-wrap items-start justify-between gap-4 mb-6">
+          <div className="rounded-xl border border-white/5 bg-zinc-900/40 p-6 shadow-sm">
+            <div className="flex flex-wrap items-start justify-between gap-4 mb-8">
               <div>
-                <h2 className="text-2xl font-bold text-white">{lead.name}</h2>
-                <p className="text-slate-400 mt-1">{lead.company || "No company"}</p>
+                <h2 className="text-3xl font-bold text-zinc-100 tracking-tight">{lead.name}</h2>
+                <p className="text-zinc-400 mt-1">{lead.company || "No company provided"}</p>
               </div>
               <Badge
                 variant="outline"
-                className={`capitalize text-sm px-3 py-1 ${statusColors[lead.status] || ""}`}
+                className={`capitalize font-medium px-3 py-1 ${statusColors[lead.status] || ""}`}
               >
                 {lead.status}
               </Badge>
@@ -218,46 +218,48 @@ export default function LeadDetailPage() {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {[
-                { label: "Email", value: lead.email, icon: <Mail className="w-4 h-4 mr-1.5 inline-block" /> },
-                { label: "Phone", value: lead.phone, icon: <Phone className="w-4 h-4 mr-1.5 inline-block" /> },
-                { label: "Source", value: lead.source, icon: <Globe className="w-4 h-4 mr-1.5 inline-block" /> },
-                { label: "Created", value: formatDateTime(lead.createdAt), icon: <Calendar className="w-4 h-4 mr-1.5 inline-block" /> },
+                { label: "Email", value: lead.email, icon: <Mail className="w-4 h-4 mr-2 text-cyan-400" /> },
+                { label: "Phone", value: lead.phone, icon: <Phone className="w-4 h-4 mr-2 text-cyan-400" /> },
+                { label: "Source", value: lead.source, icon: <Globe className="w-4 h-4 mr-2 text-cyan-400" /> },
+                { label: "Created", value: formatDateTime(lead.createdAt), icon: <Calendar className="w-4 h-4 mr-2 text-cyan-400" /> },
               ].map((item, i) => (
-                <div key={i} className="p-3 rounded-lg bg-slate-800/30">
-                  <p className="text-xs text-slate-500 mb-1">
+                <div key={i} className="p-4 rounded-xl bg-[#0a0a0a] border border-white/5 flex items-start flex-col justify-center">
+                  <div className="flex items-center text-xs text-zinc-500 uppercase tracking-widest font-semibold mb-2">
                     {item.icon} {item.label}
-                  </p>
-                  <p className="text-sm text-white">{item.value}</p>
+                  </div>
+                  <p className="text-sm font-medium text-zinc-100">{item.value}</p>
                 </div>
               ))}
             </div>
 
             {lead.message && (
-              <div className="mt-4 p-3 rounded-lg bg-slate-800/30">
-                <p className="text-xs text-slate-500 mb-1 flex items-center"><MessageSquare className="w-4 h-4 mr-1.5" /> Message</p>
-                <p className="text-sm text-slate-300 leading-relaxed">{lead.message}</p>
+              <div className="mt-4 p-5 rounded-xl bg-[#0a0a0a] border border-white/5">
+                <p className="text-xs text-zinc-500 uppercase tracking-widest font-semibold mb-3 flex items-center">
+                  <MessageSquare className="w-4 h-4 mr-2 text-cyan-400" /> Message
+                </p>
+                <p className="text-sm text-zinc-300 leading-relaxed whitespace-pre-wrap">{lead.message}</p>
               </div>
             )}
           </div>
 
           {/* Actions */}
-          <div className="rounded-xl border border-slate-800 bg-slate-900/50 p-6 space-y-4">
-            <h3 className="text-sm font-semibold text-slate-300 uppercase tracking-wider">
+          <div className="rounded-xl border border-white/5 bg-zinc-900/40 p-6 space-y-5 shadow-sm">
+            <h3 className="text-xs font-semibold text-zinc-500 uppercase tracking-widest">
               Actions
             </h3>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="space-y-2">
-                <label className="text-xs text-slate-500">Change Status</label>
+                <label className="text-xs font-semibold text-zinc-500 uppercase tracking-widest">Change Status</label>
                 <Select
                   value={lead.status}
                   onValueChange={handleStatusChange}
                   disabled={updating}
                 >
-                  <SelectTrigger className="bg-slate-800/50 border-slate-700 text-white">
+                  <SelectTrigger className="bg-[#0a0a0a] border-white/10 text-zinc-100 h-10">
                     <SelectValue />
                   </SelectTrigger>
-                  <SelectContent className="bg-slate-900 border-slate-800">
+                  <SelectContent className="bg-zinc-950 border-white/10 text-zinc-100">
                     <SelectItem value="new">New</SelectItem>
                     <SelectItem value="contacted">Contacted</SelectItem>
                     <SelectItem value="qualified">Qualified</SelectItem>
@@ -269,20 +271,20 @@ export default function LeadDetailPage() {
               </div>
 
               <div className="space-y-2">
-                <label className="text-xs text-slate-500">Assign To</label>
+                <label className="text-xs font-semibold text-zinc-500 uppercase tracking-widest">Assign To</label>
                 <Select
                   value={lead.assignedTo?._id || "unassigned"}
                   onValueChange={handleAssign}
                   disabled={updating}
                 >
-                  <SelectTrigger className="bg-slate-800/50 border-slate-700 text-white">
+                  <SelectTrigger className="bg-[#0a0a0a] border-white/10 text-zinc-100 h-10">
                     <span className="truncate">
                       {lead.assignedTo 
                         ? (users.find(u => u._id === (typeof lead.assignedTo === 'string' ? lead.assignedTo : lead.assignedTo?._id))?.name || lead.assignedTo?.name || "Unknown User")
                         : "Unassigned"}
                     </span>
                   </SelectTrigger>
-                  <SelectContent className="bg-slate-900 border-slate-800">
+                  <SelectContent className="bg-zinc-950 border-white/10 text-zinc-100">
                     <SelectItem value="unassigned">Unassigned</SelectItem>
                     {users.map((user) => (
                       <SelectItem key={user._id} value={user._id}>
@@ -296,8 +298,8 @@ export default function LeadDetailPage() {
           </div>
 
           {/* Add Note */}
-          <div className="rounded-xl border border-slate-800 bg-slate-900/50 p-6 space-y-4">
-            <h3 className="text-sm font-semibold text-slate-300 uppercase tracking-wider">
+          <div className="rounded-xl border border-white/5 bg-zinc-900/40 p-6 space-y-4 shadow-sm">
+            <h3 className="text-xs font-semibold text-zinc-500 uppercase tracking-widest">
               Add Note
             </h3>
             <Textarea
@@ -305,12 +307,12 @@ export default function LeadDetailPage() {
               onChange={(e) => setNoteText(e.target.value)}
               placeholder="Write a note about this lead..."
               rows={3}
-              className="bg-slate-800/50 border-slate-700 text-white placeholder:text-slate-500 focus:border-indigo-500 resize-none"
+              className="bg-[#0a0a0a] border-white/10 text-zinc-100 placeholder:text-zinc-600 focus-visible:ring-cyan-500/50 resize-none"
             />
             <Button
               onClick={handleAddNote}
               disabled={!noteText.trim() || updating}
-              className="bg-indigo-600 hover:bg-indigo-500 text-white cursor-pointer"
+              className="bg-cyan-500 hover:bg-cyan-400 text-zinc-950 font-semibold cursor-pointer h-10 px-6 rounded-md transition-colors"
             >
               {updating ? "Adding..." : "Add Note"}
             </Button>
@@ -318,23 +320,23 @@ export default function LeadDetailPage() {
 
           {/* Notes List */}
           {lead.notes.length > 0 && (
-            <div className="rounded-xl border border-slate-800 bg-slate-900/50 p-6 space-y-4">
-              <h3 className="text-sm font-semibold text-slate-300 uppercase tracking-wider">
+            <div className="rounded-xl border border-white/5 bg-zinc-900/40 p-6 space-y-5 shadow-sm">
+              <h3 className="text-xs font-semibold text-zinc-500 uppercase tracking-widest">
                 Notes ({lead.notes.length})
               </h3>
               <div className="space-y-3">
                 {[...lead.notes].reverse().map((note) => (
                   <div
                     key={note._id}
-                    className="p-3 rounded-lg bg-slate-800/30 border border-slate-800"
+                    className="p-4 rounded-xl bg-[#0a0a0a] border border-white/5"
                   >
-                    <p className="text-sm text-slate-300 leading-relaxed">{note.text}</p>
-                    <div className="flex items-center gap-2 mt-2">
-                      <span className="text-xs text-indigo-400">
+                    <p className="text-sm text-zinc-300 leading-relaxed whitespace-pre-wrap">{note.text}</p>
+                    <div className="flex items-center gap-2 mt-3 pt-3 border-t border-white/5">
+                      <span className="text-xs font-medium text-cyan-400">
                         {note.addedBy?.name || "Unknown"}
                       </span>
-                      <span className="text-xs text-slate-600">•</span>
-                      <span className="text-xs text-slate-500">
+                      <span className="text-xs text-zinc-600">•</span>
+                      <span className="text-xs text-zinc-500">
                         {formatDateTime(note.createdAt)}
                       </span>
                     </div>
@@ -347,34 +349,30 @@ export default function LeadDetailPage() {
 
         {/* Right Column — Activity Trail */}
         <div className="space-y-6">
-          <div className="rounded-xl border border-slate-800 bg-slate-900/50 p-6">
-            <h3 className="text-sm font-semibold text-slate-300 uppercase tracking-wider mb-4">
+          <div className="rounded-xl border border-white/5 bg-zinc-900/40 p-6 shadow-sm sticky top-24">
+            <h3 className="text-xs font-semibold text-zinc-500 uppercase tracking-widest mb-6">
               Activity Trail
             </h3>
 
             {activities.length === 0 ? (
-              <p className="text-sm text-slate-500">No activity yet.</p>
+              <p className="text-sm text-zinc-500 italic">No activity yet.</p>
             ) : (
-              <div className="space-y-0">
+              <div className="space-y-0 relative before:absolute before:inset-0 before:ml-4 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-white/5 before:z-0">
                 {activities.map((activity, index) => (
-                  <div key={activity._id} className="flex gap-3">
-                    {/* Timeline line */}
+                  <div key={activity._id} className="relative z-10 flex gap-4 pb-6 last:pb-0">
                     <div className="flex flex-col items-center">
-                      <div className="w-8 h-8 rounded-full bg-slate-800/50 flex items-center justify-center border border-slate-700/50 text-sm shadow-sm shrink-0">
+                      <div className="w-9 h-9 rounded-full bg-[#0a0a0a] flex items-center justify-center border border-white/10 text-sm shadow-sm shrink-0">
                         {getActionIcon(activity.action)}
                       </div>
-                      {index < activities.length - 1 && (
-                        <div className="w-px h-full bg-slate-800 my-1" />
-                      )}
                     </div>
-                    <div className="pb-6 pt-1">
-                      <p className="text-sm text-slate-300">{activity.details}</p>
-                      <div className="flex items-center gap-2 mt-1">
-                        <span className="text-xs text-indigo-400">
+                    <div className="flex-1 pt-1.5">
+                      <p className="text-sm font-medium text-zinc-200">{activity.details}</p>
+                      <div className="flex items-center gap-2 mt-1.5">
+                        <span className="text-[11px] font-medium uppercase tracking-wider text-cyan-400">
                           {activity.performedBy?.name || "System"}
                         </span>
-                        <span className="text-xs text-slate-600">•</span>
-                        <span className="text-xs text-slate-500">
+                        <span className="text-[11px] text-zinc-600">•</span>
+                        <span className="text-[11px] text-zinc-500 tracking-wider">
                           {formatDateTime(activity.createdAt)}
                         </span>
                       </div>

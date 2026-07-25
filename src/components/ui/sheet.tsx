@@ -61,11 +61,9 @@ function SheetContent({
         {children}
         {showCloseButton && (
           <SheetPrimitive.Close
-            className="absolute top-4 right-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-secondary cursor-pointer"
+            className="absolute top-4 right-4 rounded-md p-1 opacity-70 transition-opacity hover:opacity-100 hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none cursor-pointer z-50"
           >
-            <svg className="w-5 h-5 text-slate-400 hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-            </svg>
+            <XIcon className="w-5 h-5 text-zinc-400 hover:text-white" />
             <span className="sr-only">Close</span>
           </SheetPrimitive.Close>
         )}

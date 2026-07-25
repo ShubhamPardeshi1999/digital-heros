@@ -26,7 +26,7 @@ export default function RootLayout({
       lang="en"
       className={`${poppins.variable} font-sans h-full antialiased dark`}
     >
-      <body className="min-h-full flex flex-col bg-slate-950 text-white">
+      <body className="min-h-full flex flex-col bg-[#0a0a0a] text-zinc-100">
         <AuthProvider>{children}</AuthProvider>
       </body>
     </html>
